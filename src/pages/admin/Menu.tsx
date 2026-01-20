@@ -86,7 +86,7 @@ export default function Menu() {
   });
 
   // Fetch menu items with ingredients
-  const { data: menuItems = [], isLoading } = useQuery({
+  const { data: menuItems = [], isLoading, isError, error: menuError } = useQuery({
     queryKey: ['menu-items-with-ingredients'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -174,10 +174,12 @@ export default function Menu() {
 
       // Delete existing ingredients and re-insert
       if (menuItemId) {
-        await supabase
+        const { error: deleteError } = await supabase
           .from('menu_ingredients')
           .delete()
           .eq('menu_item_id', menuItemId);
+        
+        if (deleteError) throw deleteError;
 
         // Insert new ingredients
         if (data.ingredients.length > 0) {
@@ -213,10 +215,12 @@ export default function Menu() {
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
       // Delete ingredients first
-      await supabase
+      const { error: ingError } = await supabase
         .from('menu_ingredients')
         .delete()
         .eq('menu_item_id', id);
+
+      if (ingError) throw ingError;
 
       const { error } = await supabase
         .from('menu_items')
@@ -354,7 +358,15 @@ export default function Menu() {
 
       {/* Menu Items */}
       {isLoading ? (
-        <div className="text-center py-12 text-gray-500">Loading menu items...</div>
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+          <p className="text-gray-500">Loading menu items...</p>
+        </div>
+      ) : isError ? (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <p className="text-red-700 font-medium">Failed to load menu items</p>
+          <p className="text-red-600 text-sm mt-1">{menuError instanceof Error ? menuError.message : 'Unknown error'}</p>
+        </div>
       ) : filteredItems.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
           No menu items found. Add your first item!

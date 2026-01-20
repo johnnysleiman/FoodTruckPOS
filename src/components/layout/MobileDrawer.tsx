@@ -72,7 +72,7 @@ export function MobileDrawer({ isOpen, onClose, navItems }: MobileDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-gray-200">
           <div>
-            <h1 className="text-xl font-bold text-primary">POS Admin</h1>
+            <h1 className="text-xl font-bold text-primary">Rusty Lab</h1>
             <p className="text-sm text-gray-500">Dashboard</p>
           </div>
           <button

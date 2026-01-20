@@ -94,9 +94,11 @@ export type Database = {
           recipe_type: 'fixed_recipe' | 'variable_recipe';
           image_url: string | null;
           is_active: boolean;
+          display_order: number | null;
           created_at: string;
+          updated_at: string;
         };
-        Insert: Omit<Database['public']['Tables']['menu_items']['Row'], 'id' | 'created_at'>;
+        Insert: Omit<Database['public']['Tables']['menu_items']['Row'], 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Database['public']['Tables']['menu_items']['Insert']>;
       };
       menu_ingredients: {
@@ -116,6 +118,8 @@ export type Database = {
           menu_item_id: string;
           name: string;
           display_order: number;
+          is_required: boolean;
+          multiple_selection: boolean;
           created_at: string;
         };
         Insert: Omit<Database['public']['Tables']['menu_option_groups']['Row'], 'id' | 'created_at'>;

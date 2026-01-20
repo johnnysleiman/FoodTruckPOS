@@ -86,7 +86,7 @@ export default function POSLogin() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl shadow-lg mb-4">
             <ShoppingCart className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">POS System</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Rusty Lab</h1>
           <p className="text-gray-500 mt-2">Point of Sale</p>
         </div>
 

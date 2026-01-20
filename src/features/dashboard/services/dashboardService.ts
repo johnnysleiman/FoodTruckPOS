@@ -46,7 +46,7 @@ class DashboardService {
 
     return {
       stats: {
-        moneyOnHand: balanceData?.balance || 0,
+        moneyOnHand: balanceData || 0,
         cashRunwayDays: 0, // Would need more complex calculation
         mtdRevenue,
         mtdProfit,
