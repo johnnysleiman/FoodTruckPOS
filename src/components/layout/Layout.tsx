@@ -125,8 +125,8 @@ export default function Layout() {
             <div className={`border-b border-gray-200 flex items-center ${isSidebarCollapsed ? 'p-3 justify-center' : 'p-4 justify-between'}`}>
               {!isSidebarCollapsed && (
                 <div>
-                  <h1 className="text-xl font-bold text-primary">POS Admin</h1>
-                  <p className="text-xs text-gray-500">Dashboard</p>
+                  <h1 className="text-xl font-bold text-primary">Rusty Lab</h1>
+                  <p className="text-xs text-gray-500">We Serve Passion</p>
                 </div>
               )}
               <div className={`flex ${isSidebarCollapsed ? 'flex-col gap-2' : 'gap-1'}`}>
@@ -201,7 +201,7 @@ export default function Layout() {
               >
                 <MenuIcon className="w-6 h-6 text-gray-700" />
               </button>
-              <h1 className="ml-3 text-xl font-bold text-primary">POS Admin</h1>
+              <h1 className="ml-3 text-xl font-bold text-primary">Rusty Lab</h1>
             </div>
             <button
               onClick={toggleFullscreen}

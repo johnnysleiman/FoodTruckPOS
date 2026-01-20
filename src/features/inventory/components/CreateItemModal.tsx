@@ -17,7 +17,7 @@ interface CreateItemModalProps {
 
 export function CreateItemModal({ isOpen, onClose, onSuccess }: CreateItemModalProps) {
   const [name, setName] = useState('');
-  const [category, setCategory] = useState<InventoryCategory>('raw');
+  const [category, setCategory] = useState<InventoryCategory>('proteins');
   const [unitOfMeasurement, setUnitOfMeasurement] = useState<UnitOfMeasurement>('kg');
   const [reorderThreshold, setReorderThreshold] = useState('');
   const [isExpirable, setIsExpirable] = useState(false);
@@ -27,10 +27,10 @@ export function CreateItemModal({ isOpen, onClose, onSuccess }: CreateItemModalP
   useEffect(() => {
     if (isOpen) {
       setName('');
-      setCategory('raw');
+      setCategory('proteins');
       setUnitOfMeasurement('kg');
-      setReorderThreshold(String(DEFAULT_REORDER_THRESHOLDS['raw']));
-      setIsExpirable(EXPIRABLE_CATEGORIES.includes('raw'));
+      setReorderThreshold(String(DEFAULT_REORDER_THRESHOLDS['proteins']));
+      setIsExpirable(EXPIRABLE_CATEGORIES.includes('proteins'));
     }
   }, [isOpen]);
 

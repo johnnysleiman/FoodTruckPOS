@@ -3,16 +3,17 @@
 // ============================================
 
 /**
- * Inventory categories for food truck
+ * Inventory categories for Rusty Lab
  */
 export type InventoryCategory =
   // Food Ingredients
-  | 'raw'           // Proteins, tortillas, rice, beans, beverages
-  | 'toppings'      // Vegetables, cheese, herbs
-  | 'fillings'      // Sauces, guacamole, sour cream
+  | 'proteins'      // Merguez sausage, steak
+  | 'sauces'        // Mayo, ketchup, mustard, bacon jam
+  | 'produce'       // Onions, pickles, cabbage, veggies
+  | 'sides'         // Mashed potato
+  | 'bread'         // Sandwich bread/buns
   // Supplies
-  | 'plates_packaging'  // Trays, napkins, bags
-  | 'utensils';         // Forks, spoons, etc.
+  | 'packaging';    // Plates, napkins, bags, utensils
 
 /**
  * Units of measurement

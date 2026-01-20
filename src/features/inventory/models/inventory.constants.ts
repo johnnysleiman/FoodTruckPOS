@@ -7,22 +7,24 @@ import type { InventoryCategory, UnitOfMeasurement } from './inventory.types';
 
 // Category display labels
 export const CATEGORY_LABELS: Record<InventoryCategory, string> = {
-  raw: 'Proteins & Base',
-  toppings: 'Toppings & Produce',
-  fillings: 'Sauces & Condiments',
-  plates_packaging: 'Packaging',
-  utensils: 'Utensils',
+  proteins: 'Proteins',
+  sauces: 'Sauces & Condiments',
+  produce: 'Produce & Veggies',
+  sides: 'Sides',
+  bread: 'Bread',
+  packaging: 'Packaging & Supplies',
 };
 
 // Category options for dropdowns
 export const CATEGORY_OPTIONS = [
   { label: '━━━ FOOD ━━━', value: '', disabled: true },
-  { label: 'Proteins & Base', value: 'raw' as InventoryCategory },
-  { label: 'Toppings & Produce', value: 'toppings' as InventoryCategory },
-  { label: 'Sauces & Condiments', value: 'fillings' as InventoryCategory },
+  { label: 'Proteins', value: 'proteins' as InventoryCategory },
+  { label: 'Sauces & Condiments', value: 'sauces' as InventoryCategory },
+  { label: 'Produce & Veggies', value: 'produce' as InventoryCategory },
+  { label: 'Sides', value: 'sides' as InventoryCategory },
+  { label: 'Bread', value: 'bread' as InventoryCategory },
   { label: '━━━ SUPPLIES ━━━', value: '', disabled: true },
-  { label: 'Packaging', value: 'plates_packaging' as InventoryCategory },
-  { label: 'Utensils', value: 'utensils' as InventoryCategory },
+  { label: 'Packaging & Supplies', value: 'packaging' as InventoryCategory },
 ];
 
 // Unit display labels
@@ -66,18 +68,21 @@ export const UNIT_PLURAL_LABELS: Record<UnitOfMeasurement, string> = {
 
 // Categories that are typically expirable
 export const EXPIRABLE_CATEGORIES: InventoryCategory[] = [
-  'raw',
-  'toppings',
-  'fillings',
+  'proteins',
+  'sauces',
+  'produce',
+  'sides',
+  'bread',
 ];
 
 // Default reorder thresholds by category
 export const DEFAULT_REORDER_THRESHOLDS: Record<InventoryCategory, number> = {
-  raw: 5,
-  toppings: 2,
-  fillings: 2,
-  plates_packaging: 50,
-  utensils: 100,
+  proteins: 5,
+  sauces: 2,
+  produce: 2,
+  sides: 5,
+  bread: 10,
+  packaging: 50,
 };
 
 // Validation rules

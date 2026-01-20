@@ -69,11 +69,12 @@ describe('formatCurrency', () => {
 
 describe('formatCategory', () => {
   it('should return category labels', () => {
-    expect(formatCategory('raw')).toBe('Proteins & Base');
-    expect(formatCategory('toppings')).toBe('Toppings & Produce');
-    expect(formatCategory('fillings')).toBe('Sauces & Condiments');
-    expect(formatCategory('plates_packaging')).toBe('Packaging');
-    expect(formatCategory('utensils')).toBe('Utensils');
+    expect(formatCategory('proteins')).toBe('Proteins');
+    expect(formatCategory('sauces')).toBe('Sauces & Condiments');
+    expect(formatCategory('produce')).toBe('Produce & Veggies');
+    expect(formatCategory('sides')).toBe('Sides');
+    expect(formatCategory('bread')).toBe('Bread');
+    expect(formatCategory('packaging')).toBe('Packaging & Supplies');
   });
 
   it('should fall back to category value for unknown categories', () => {
