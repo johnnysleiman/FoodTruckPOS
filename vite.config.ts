@@ -14,4 +14,6 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+  // Ensure proper base path for SPA routing
+  base: '/',
 })

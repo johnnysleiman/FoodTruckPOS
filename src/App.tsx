@@ -109,6 +109,9 @@ function App() {
 
             {/* Default redirect */}
             <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+
+            {/* Catch-all 404 - redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
