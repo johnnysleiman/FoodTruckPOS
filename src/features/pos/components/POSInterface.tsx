@@ -296,7 +296,7 @@ export function POSInterface() {
                   <button
                     key={item.id}
                     onClick={() => handleMenuItemClick(item)}
-                    className="bg-white hover:bg-blue-50 rounded-xl p-3 transition-all duration-200 hover:shadow-xl border-2 border-gray-200 hover:border-primary flex flex-col justify-between h-full"
+                    className="bg-white hover:bg-primary-50 rounded-xl p-3 transition-all duration-200 hover:shadow-xl border-2 border-gray-200 hover:border-primary flex flex-col justify-between h-full"
                   >
                     <div className="flex-1 bg-white rounded-lg mb-2 flex items-center justify-center overflow-hidden aspect-square">
                       {item.image_url ? (
@@ -318,7 +318,7 @@ export function POSInterface() {
                       <p className="font-bold text-gray-800 text-sm lg:text-base mb-1 line-clamp-2">{item.name}</p>
                       <p className="text-2xl lg:text-3xl font-bold text-primary">${item.price.toFixed(2)}</p>
                       {isVariableRecipe && (
-                        <span className="inline-block mt-1 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                        <span className="inline-block mt-1 text-xs bg-primary-100 text-primary-700 px-2 py-1 rounded">
                           Customize
                         </span>
                       )}
@@ -333,7 +333,7 @@ export function POSInterface() {
         {/* Right Side - Current Order */}
         <div className="w-80 xl:w-96 bg-white flex flex-col border-l-2 border-gray-200 h-full overflow-hidden flex-shrink-0">
           {/* Order Header */}
-          <div className="p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+          <div className="p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-primary-50 to-primary-100">
             <div className="flex justify-between items-center gap-2">
               <div className="flex items-center gap-2 sm:gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-gray-800">Current Order</h3>

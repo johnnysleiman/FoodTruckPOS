@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { Plus, Package, AlertCircle, TrendingUp, XCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { useInventory } from '../hooks/useInventory';
 import type { InventoryItemWithStatus } from '../models/inventory.types';
 import { StockStatus } from '../models/inventory.types';
@@ -12,12 +13,18 @@ import { InventoryTable } from './InventoryTable';
 import { InventoryFilters } from './InventoryFilters';
 import { AddStockModal } from './AddStockModal';
 import { CreateItemModal } from './CreateItemModal';
+import { EditItemModal } from './EditItemModal';
+import { ConfirmModal } from '../../../components/shared';
+import { deleteInventoryItem } from '../services/inventoryService';
 
 export function InventoryPage() {
   const { items, loading, error, filters, setFilters, refresh } = useInventory();
   const [selectedItem, setSelectedItem] = useState<InventoryItemWithStatus | null>(null);
   const [showAddStockModal, setShowAddStockModal] = useState(false);
   const [showCreateItemModal, setShowCreateItemModal] = useState(false);
+  const [showEditItemModal, setShowEditItemModal] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Calculate stats
   const totalItems = items.length;
@@ -34,9 +41,38 @@ export function InventoryPage() {
     setShowAddStockModal(true);
   };
 
+  const handleEdit = (item: InventoryItemWithStatus) => {
+    setSelectedItem(item);
+    setShowEditItemModal(true);
+  };
+
+  const handleDeleteClick = (item: InventoryItemWithStatus) => {
+    setSelectedItem(item);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!selectedItem) return;
+    
+    setIsDeleting(true);
+    try {
+      await deleteInventoryItem(selectedItem.id);
+      toast.success('Item deleted successfully');
+      refresh();
+      setShowDeleteConfirm(false);
+      setSelectedItem(null);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to delete item');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   const handleModalClose = () => {
     setShowAddStockModal(false);
     setShowCreateItemModal(false);
+    setShowEditItemModal(false);
+    setShowDeleteConfirm(false);
     setSelectedItem(null);
   };
 
@@ -72,8 +108,8 @@ export function InventoryPage() {
                 <p className="text-xs lg:text-sm font-medium text-gray-600">Total Items</p>
                 <p className="text-xl lg:text-2xl font-bold text-gray-900 mt-1">{totalItems}</p>
               </div>
-              <div className="p-2 lg:p-3 bg-blue-50 rounded-lg">
-                <Package className="h-5 w-5 lg:h-6 lg:w-6 text-blue-600" />
+              <div className="p-2 lg:p-3 bg-primary-50 rounded-lg">
+                <Package className="h-5 w-5 lg:h-6 lg:w-6 text-primary" />
               </div>
             </div>
           </div>
@@ -148,6 +184,8 @@ export function InventoryPage() {
         <InventoryTable
           items={items}
           onAddStock={handleAddStock}
+          onEdit={handleEdit}
+          onDelete={handleDeleteClick}
         />
       )}
 
@@ -163,6 +201,23 @@ export function InventoryPage() {
         isOpen={showCreateItemModal}
         onClose={handleModalClose}
         onSuccess={handleSuccess}
+      />
+
+      <EditItemModal
+        item={selectedItem}
+        isOpen={showEditItemModal}
+        onClose={handleModalClose}
+        onSuccess={handleSuccess}
+      />
+
+      <ConfirmModal
+        isOpen={showDeleteConfirm}
+        title="Delete Item"
+        message={`Are you sure you want to delete "${selectedItem?.name}"? This action cannot be undone.`}
+        confirmLabel={isDeleting ? "Deleting..." : "Delete"}
+        variant="danger"
+        onConfirm={handleDeleteConfirm}
+        onCancel={handleModalClose}
       />
     </div>
   );

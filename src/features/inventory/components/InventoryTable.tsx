@@ -2,16 +2,18 @@
 // InventoryTable Component
 // ============================================
 
-import { Plus } from 'lucide-react';
+import { Plus, Pencil, Trash2 } from 'lucide-react';
 import type { InventoryItemWithStatus } from '../models/inventory.types';
 import { formatQuantity, formatCurrency, formatCategory, getStockStatusColor, formatStockStatus } from '../utils/formatters';
 
 interface InventoryTableProps {
   items: InventoryItemWithStatus[];
   onAddStock: (item: InventoryItemWithStatus) => void;
+  onEdit: (item: InventoryItemWithStatus) => void;
+  onDelete: (item: InventoryItemWithStatus) => void;
 }
 
-export function InventoryTable({ items, onAddStock }: InventoryTableProps) {
+export function InventoryTable({ items, onAddStock, onEdit, onDelete }: InventoryTableProps) {
   if (items.length === 0) {
     return (
       <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
@@ -78,13 +80,29 @@ export function InventoryTable({ items, onAddStock }: InventoryTableProps) {
                   </span>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap text-right">
-                  <button
-                    onClick={() => onAddStock(item)}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <Plus size={16} />
-                    Add Stock
-                  </button>
+                  <div className="flex items-center justify-end gap-2">
+                    <button
+                      onClick={() => onAddStock(item)}
+                      className="inline-flex items-center gap-1 px-2 py-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+                      title="Add Stock"
+                    >
+                      <Plus size={16} />
+                    </button>
+                    <button
+                      onClick={() => onEdit(item)}
+                      className="inline-flex items-center gap-1 px-2 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                      title="Edit Item"
+                    >
+                      <Pencil size={16} />
+                    </button>
+                    <button
+                      onClick={() => onDelete(item)}
+                      className="inline-flex items-center gap-1 px-2 py-1.5 text-sm font-medium text-red-500 hover:text-red-700 transition-colors"
+                      title="Delete Item"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

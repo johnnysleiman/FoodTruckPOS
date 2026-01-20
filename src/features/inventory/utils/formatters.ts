@@ -157,7 +157,7 @@ export function getExpiryStatusColor(
     case 'warning':
       return 'text-yellow-600 bg-yellow-50';
     case 'info':
-      return 'text-blue-600 bg-blue-50';
+      return 'text-primary bg-primary-50';
     case 'normal':
       return 'text-green-600 bg-green-50';
     default:

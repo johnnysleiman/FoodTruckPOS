@@ -86,7 +86,7 @@ export function SetInitialBalanceModal({ onClose, onSuccess }: SetInitialBalance
                     setAmount(e.target.value);
                     setError('');
                   }}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-lg"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-lg"
                   placeholder="0.00"
                   autoFocus
                   disabled={isLoading}
@@ -118,7 +118,7 @@ export function SetInitialBalanceModal({ onClose, onSuccess }: SetInitialBalance
             <button
               type="submit"
               disabled={isLoading || !amount}
-              className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Setting...' : 'Set Balance'}
             </button>

@@ -44,7 +44,7 @@ export function DashboardPage() {
       <div className="p-8">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-gray-600">Loading dashboard...</p>
           </div>
         </div>
@@ -62,7 +62,7 @@ export function DashboardPage() {
             <p className="text-gray-600 mb-4">{error}</p>
             <button
               onClick={refetch}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
             >
               Retry
             </button>
@@ -125,7 +125,7 @@ export function DashboardPage() {
               : 'neutral'
           }
           icon={<DollarSign size={24} />}
-          gradient="from-blue-500 to-blue-600"
+          gradient="from-primary to-primary-dark"
         />
         <StatCard
           title="MTD PROFIT"

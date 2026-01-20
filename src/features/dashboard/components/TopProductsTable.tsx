@@ -66,7 +66,7 @@ export function TopProductsTable({ data }: TopProductsTableProps) {
                     <div
                       className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold ${
                         index === 0
-                          ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white'
+                          ? 'bg-gradient-to-br from-primary to-primary-dark text-white'
                           : 'bg-gray-100 text-gray-600'
                       }`}
                     >
@@ -80,7 +80,7 @@ export function TopProductsTable({ data }: TopProductsTableProps) {
                       {product.name}
                     </span>
                     {index === 0 && (
-                      <TrendingUp size={14} className="text-blue-500" />
+                      <TrendingUp size={14} className="text-primary" />
                     )}
                   </div>
                 </td>

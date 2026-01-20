@@ -33,8 +33,8 @@ export function ConfirmModal({
       button: 'bg-yellow-600 hover:bg-yellow-700',
     },
     info: {
-      icon: 'bg-blue-100 text-blue-600',
-      button: 'bg-blue-600 hover:bg-blue-700',
+      icon: 'bg-primary-100 text-primary-600',
+      button: 'bg-primary hover:bg-primary-dark',
     },
   };
 

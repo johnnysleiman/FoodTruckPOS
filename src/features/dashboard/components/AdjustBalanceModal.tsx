@@ -133,7 +133,7 @@ export function AdjustBalanceModal({
                   setAmount(e.target.value);
                   setError('');
                 }}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-lg"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors text-lg"
                 placeholder="0.00"
                 disabled={isLoading}
                 required
@@ -152,7 +152,7 @@ export function AdjustBalanceModal({
                   setDescription(e.target.value);
                   setError('');
                 }}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition-colors"
                 placeholder="e.g., Cash deposit, Owner withdrawal"
                 disabled={isLoading}
                 required

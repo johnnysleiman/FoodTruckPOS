@@ -38,7 +38,7 @@ export function RecentSalesList({ data }: RecentSalesListProps) {
             className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors duration-200 group"
           >
             <div className="flex items-center gap-3 flex-1">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-sm">
                 <ArrowUpRight size={20} />
               </div>
               <div className="flex-1 min-w-0">

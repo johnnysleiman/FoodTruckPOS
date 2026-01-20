@@ -364,6 +364,50 @@ export async function getExpiringSoonCount(): Promise<number> {
 }
 
 /**
+ * Delete an inventory item (only if no stock purchases exist)
+ */
+export async function deleteInventoryItem(id: string): Promise<void> {
+  try {
+    // Check if there are any stock purchases
+    const { data: purchases, error: purchaseError } = await supabase
+      .from('stock_purchases')
+      .select('id')
+      .eq('inventory_item_id', id)
+      .limit(1);
+
+    if (purchaseError) throw purchaseError;
+
+    if (purchases && purchases.length > 0) {
+      throw new Error('Cannot delete item with existing stock purchases. Remove all stock first.');
+    }
+
+    // Check if item is used in any menu ingredients
+    const { data: menuIngredients, error: menuError } = await supabase
+      .from('menu_ingredients')
+      .select('id')
+      .eq('inventory_item_id', id)
+      .limit(1);
+
+    if (menuError) throw menuError;
+
+    if (menuIngredients && menuIngredients.length > 0) {
+      throw new Error('Cannot delete item that is used in menu recipes. Remove from menu first.');
+    }
+
+    // Delete the item
+    const { error: deleteError } = await supabase
+      .from('inventory_items')
+      .delete()
+      .eq('id', id);
+
+    if (deleteError) throw deleteError;
+  } catch (error) {
+    console.error('Error deleting inventory item:', error);
+    throw error instanceof Error ? error : new Error('Failed to delete inventory item');
+  }
+}
+
+/**
  * Delete a stock purchase (only if fully unused)
  */
 export async function deletePurchase(purchaseId: string): Promise<void> {

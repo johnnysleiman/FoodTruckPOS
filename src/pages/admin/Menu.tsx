@@ -321,7 +321,7 @@ export default function Menu() {
         </div>
         <button
           onClick={() => openModal()}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
         >
           <Plus size={20} />
           Add Item
@@ -337,13 +337,13 @@ export default function Menu() {
             placeholder="Search menu items..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
           />
         </div>
         <select
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
         >
           <option value="all">All Categories</option>
           {CATEGORIES.map((cat) => (
@@ -375,7 +375,7 @@ export default function Menu() {
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h3 className="font-semibold text-gray-900">{item.name}</h3>
-                        <p className="text-2xl font-bold text-blue-600">${item.price.toFixed(2)}</p>
+                        <p className="text-2xl font-bold text-primary">${item.price.toFixed(2)}</p>
                       </div>
                       <span className={`px-2 py-1 text-xs rounded-full ${
                         item.is_active
@@ -428,7 +428,7 @@ export default function Menu() {
                       </button>
                       <button
                         onClick={() => openModal(item)}
-                        className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-lg text-sm hover:bg-blue-200 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 bg-primary-100 text-primary-700 rounded-lg text-sm hover:bg-primary-200 transition-colors"
                       >
                         <Pencil size={16} />
                         Edit
@@ -469,7 +469,7 @@ export default function Menu() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
                   placeholder="e.g., Beef Taco"
                   required
                 />
@@ -485,7 +485,7 @@ export default function Menu() {
                     min="0"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
                     placeholder="0.00"
                     required
                   />
@@ -497,7 +497,7 @@ export default function Menu() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -512,7 +512,7 @@ export default function Menu() {
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
                   rows={2}
                   placeholder="Optional description"
                 />
@@ -527,7 +527,7 @@ export default function Menu() {
                   <button
                     type="button"
                     onClick={addIngredient}
-                    className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                    className="text-sm text-primary hover:text-primary-dark flex items-center gap-1"
                   >
                     <Plus size={16} />
                     Add Ingredient
@@ -545,7 +545,7 @@ export default function Menu() {
                         <select
                           value={ingredient.inventory_item_id}
                           onChange={(e) => updateIngredient(index, 'inventory_item_id', e.target.value)}
-                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-sm"
+                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary text-sm"
                         >
                           <option value="">Select ingredient...</option>
                           {inventoryItems.map((item) => (
@@ -561,7 +561,7 @@ export default function Menu() {
                           value={ingredient.quantity}
                           onChange={(e) => updateIngredient(index, 'quantity', e.target.value)}
                           placeholder="Qty"
-                          className="w-24 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-sm"
+                          className="w-24 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary text-sm"
                         />
                         <button
                           type="button"
@@ -590,7 +590,7 @@ export default function Menu() {
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
-                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
                 >
                   {saveMutation.isPending ? 'Saving...' : 'Save'}
                 </button>
