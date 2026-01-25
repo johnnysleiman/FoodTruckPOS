@@ -10,6 +10,33 @@ import Inventory from './pages/admin/Inventory';
 import Sales from './pages/admin/Sales';
 import Menu from './pages/admin/Menu';
 import POS from './pages/pos/POS';
+import { isSupabaseConfigured } from './lib/supabase';
+
+// Configuration Error Component
+function ConfigurationError() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="text-center max-w-lg">
+        <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Configuration Required</h1>
+        <p className="text-gray-600 mb-4">
+          This app requires Supabase to be configured. Please set the following environment variables in your Netlify dashboard:
+        </p>
+        <div className="bg-gray-100 rounded-lg p-4 text-left mb-4">
+          <code className="text-sm text-gray-800 block">VITE_SUPABASE_URL</code>
+          <code className="text-sm text-gray-800 block">VITE_SUPABASE_ANON_KEY</code>
+        </div>
+        <p className="text-sm text-gray-500">
+          Go to Netlify → Site Settings → Environment Variables to add these values.
+        </p>
+      </div>
+    </div>
+  );
+}
 
 // Error Boundary to catch React errors and prevent white screens
 interface ErrorBoundaryState {
@@ -70,6 +97,11 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
 }
 
 function App() {
+  // Show configuration error if Supabase isn't set up
+  if (!isSupabaseConfigured) {
+    return <ConfigurationError />;
+  }
+
   return (
     <ErrorBoundary>
       <AuthProvider>
